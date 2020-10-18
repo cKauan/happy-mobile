@@ -1,20 +1,33 @@
-import React from "react";
-import {
-    View,
-    TouchableOpacity,
-    Dimensions,
-    StyleSheet,
-    Text,
-} from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Dimensions, StyleSheet, Text } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps";
 import mapMarker from "../assets/map-marker.png";
 import { Feather } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { RectButton } from "react-native-gesture-handler";
+import Api from "../services/Api";
+
+interface Orphanage {
+    id: number;
+    latitude: string;
+    longitude: string;
+    name: string;
+}
 const OrphanagesMap = () => {
     const navigation = useNavigation();
-    function handleNavigateToOrphanageDetails() {
-        navigation.navigate("OrphanageDetails")
+    const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
+    function handleNavigateToOrphanageDetails(id: number) {
+        navigation.navigate("OrphanageDetails", { id });
     }
+    function handleNavigateToCreateOrphanage() {
+        navigation.navigate("SelectMapPosition");
+    }
+    useFocusEffect(() => {
+        Api.get("orphanages").then(({ data }) => {
+            setOrphanages(data);
+        });
+    });
+
     return (
         <View style={styles.container}>
             <MapView
@@ -27,32 +40,44 @@ const OrphanagesMap = () => {
                     longitudeDelta: 0.008,
                 }}
             >
-                <Marker
-                    icon={mapMarker}
-                    coordinate={{
-                        latitude: -4.1285321,
-                        longitude: -38.2387858,
-                    }}
-                    calloutAnchor={{
-                        x: 2.75,
-                        y: 0.9,
-                    }}
-                >
-                    <Callout tooltip onPress={handleNavigateToOrphanageDetails}>
-                        <View style={styles.calloutContainer}>
-                            <Text style={styles.calloutText}>Lar do amor</Text>
-                        </View>
-                    </Callout>
-                </Marker>
+                {orphanages.map((orphanage) => (
+                    <Marker
+                        key={orphanage.id}
+                        icon={mapMarker}
+                        coordinate={{
+                            latitude: parseFloat(orphanage.latitude),
+                            longitude: parseFloat(orphanage.longitude),
+                        }}
+                        calloutAnchor={{
+                            x: 2.75,
+                            y: 0.9,
+                        }}
+                    >
+                        <Callout
+                            tooltip
+                            onPress={() =>
+                                handleNavigateToOrphanageDetails(orphanage.id)
+                            }
+                        >
+                            <View style={styles.calloutContainer}>
+                                <Text style={styles.calloutText}>
+                                    {orphanage.name}
+                                </Text>
+                            </View>
+                        </Callout>
+                    </Marker>
+                ))}
             </MapView>
             <View style={styles.footer}>
-                <Text style={styles.footerText}>2 orfanatos encontrados</Text>
-                <TouchableOpacity
+                <Text style={styles.footerText}>
+                    {orphanages.length} orfanato(s) encontrados
+                </Text>
+                <RectButton
                     style={styles.createOrphanageButton}
-                    onPress={() => {}}
+                    onPress={handleNavigateToCreateOrphanage}
                 >
                     <Feather name="plus" size={20} color="#FFF" />
-                </TouchableOpacity>
+                </RectButton>
             </View>
         </View>
     );
