@@ -21,6 +21,7 @@
 * [Sobre o projeto](#sobre-o-projeto)
 * [Iniciando](#iniciando)
 * [Telas](#screenshots-do-projeto)
+* [Download do Aplicativo](#download)
 * [Contribuições](#contribuições)
 * [Licença](#licença)
 * [Contato](#contato)
@@ -34,6 +35,10 @@
 * [Typescript](https://www.typescriptlang.org)
 * [React Native](https://reactnative.dev)
 * [Expo](https://expo.io)
+
+## Download
+### Baixar o Aplicativo
+🚧 Em breve 🚧
 
 <!-- GETTING STARTED -->
 ## Iniciando
