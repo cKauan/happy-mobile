@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 import { useFonts } from "expo-font";
 import {
     Nunito_600SemiBold,
@@ -7,6 +6,7 @@ import {
     Nunito_800ExtraBold,
 } from "@expo-google-fonts/nunito";
 import Routes from "./src/routes";
+import Loading from "./src/components/Loading";
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -15,7 +15,7 @@ export default function App() {
         Nunito_800ExtraBold,
     });
     if (!fontsLoaded) {
-        return <Text>Carregando</Text>;
+        return <Loading />;
     }
     return <Routes />;
 }
