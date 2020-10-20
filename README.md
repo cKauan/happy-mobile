@@ -36,10 +36,6 @@
 * [React Native](https://reactnative.dev)
 * [Expo](https://expo.io)
 
-## Download
-### Baixar o Aplicativo
-🚧 Em breve 🚧
-
 <!-- GETTING STARTED -->
 ## Iniciando
 :bookmark: Para rodar o projeto localmente você precisará seguir algumas intruções
