@@ -13,7 +13,7 @@ const Header = ({ title, showCloseButton = true }: HeaderProps) => {
         navigation.goBack();
     }
     function handleNavigationToHome() {
-        navigation.navigate("OrphanagesMap");
+        navigation.navigate("FailedCreateOrphanage");
     }
     return (
         <View style={styles.container}>
