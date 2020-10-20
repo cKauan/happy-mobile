@@ -21,7 +21,7 @@
 * [Sobre o projeto](#sobre-o-projeto)
 * [Iniciando](#iniciando)
 * [Telas](#screenshots-do-projeto)
-* [Download do Aplicativo](#download)
+* [Features](#features)
 * [Contribuições](#contribuições)
 * [Licença](#licença)
 * [Contato](#contato)
@@ -67,16 +67,33 @@ yarn start
 npm run start
 ```
 
+## Features
+:newspaper: Features são adicionais ao projeto original, itens que levam o projeto ao próximo nível
+
+- Splash Screen
+- Tela de carregamento
+- Experiência on boarding (apresentação do app ao usuário)
+- Tela de sucesso no cadastro
+- Tela de cancelamento do cadastro
+
 <!-- USAGE EXAMPLES -->
 ## Screenshots do Projeto
 
 <p align="left">
+<img src="https://i.ibb.co/YW6ZFFq/splash-screen.jpg" alt="Splash Screen" width="200" height="344"/>
+<img src="https://i.ibb.co/hCh1GbT/loading.jpg" alt="Loading" width="200" />
+<img src="https://i.ibb.co/59YTzYV/on-boarding-1.jpg" alt="On boarding 1" width="200" />
+<img src="https://i.ibb.co/BLctTyY/on-boarding-2.jpg" alt="On boarding 2" width="200" />
 <img src="https://i.ibb.co/31JsRhf/Whats-App-Image-2020-10-17-at-23-42-13-1.jpg" alt="Mapa" width="200" />
-<img src="https://i.ibb.co/tYSVsP1/Whats-App-Image-2020-10-17-at-23-42-13-2.jpg" alt="Criar orfanato" width="200"/>
-<img src="https://i.ibb.co/zH2Sg1L/Whats-App-Image-2020-10-17-at-23-42-13-3.jpg" alt="Criar orfanato" width="200"/>
 <img src="https://i.ibb.co/Yb87d47/Whats-App-Image-2020-10-17-at-23-42-13.jpg" alt="Mostrar orfanato" width="200" />
-</p>
+<img src="https://i.ibb.co/zH2Sg1L/Whats-App-Image-2020-10-17-at-23-42-13-3.jpg" alt="Criar orfanato" width="200"/>
+<img src="https://i.ibb.co/tYSVsP1/Whats-App-Image-2020-10-17-at-23-42-13-2.jpg" alt="Criar orfanato" width="200"/>
+<img src="https://i.ibb.co/zf6mGpZ/cancel.jpg" alt="Cancelar" width="200"/>
+<img src="https://i.ibb.co/PwBTj3n/sucess.jpg" alt="Sucesso" width="200"/>
 
+
+    
+</p>
 
 <!-- CONTRIBUTING -->
 ## Contribuições
