@@ -30,19 +30,21 @@ export default function OrphanageData() {
     const [opening_hours, setOpeningHours] = useState<string>("");
     const [open_on_weekends, setOpenOnWeekends] = useState<boolean>(true);
     const [images, setImages] = useState<string[]>([]);
-    const navigation = useNavigation();
-    async function handleCreateOrphanage() {
-        const data = {
-            latitude,
-            longitude,
-            name,
-            about,
-            instructions,
-            opening_hours,
-            open_on_weekends,
-        };
-        console.log(data);
 
+    const navigation = useNavigation();
+    function useValidation() {
+        if (name.length <= 0) return alert("Você precisa colocar um nome válido ");
+        if (about.length <= 0 || about.length >= 300) return alert("Preencha o campo Sobre corretamente");
+        if (images.length <= 0) return alert("Selecione 1 ou mais imagens");
+        if (instructions.length <= 0)
+            return alert("Insira as instruções para visitantes");
+        if (opening_hours.length <= 0)
+            return alert("Insira o horário de funcionamento");
+        return true;
+    }
+    function handleCreateOrphanage() {
+        const isValid = useValidation();
+        if (!isValid) return;
         const form = new FormData();
         form.append("name", name);
         form.append("about", about);
@@ -59,8 +61,8 @@ export default function OrphanageData() {
             } as any)
         );
 
-        await Api.post("orphanages", form);
-        navigation.navigate("OrphanagesMap");
+        Api.post("orphanages", form);
+        navigation.navigate("SuccessCreateOrphanage")
     }
 
     async function handleSelectImages() {
