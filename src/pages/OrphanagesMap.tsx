@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Dimensions, StyleSheet, Text } from "react-native";
+import { View, Dimensions, StyleSheet, Text, Image } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps";
 import mapMarker from "../assets/map-marker.png";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { RectButton } from "react-native-gesture-handler";
 import Api from "../services/Api";
-
+import Loading from '../components/Loading';
 interface Orphanage {
     id: number;
     latitude: string;
@@ -16,6 +16,7 @@ interface Orphanage {
 const OrphanagesMap = () => {
     const navigation = useNavigation();
     const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     function handleNavigateToOrphanageDetails(id: number) {
         navigation.navigate("OrphanageDetails", { id });
     }
@@ -24,10 +25,11 @@ const OrphanagesMap = () => {
     }
     useFocusEffect(() => {
         Api.get("orphanages").then(({ data }) => {
+            setLoading(false);
             setOrphanages(data);
         });
     });
-
+    if (loading) return <Loading />
     return (
         <View style={styles.container}>
             <MapView
@@ -133,3 +135,4 @@ const styles = StyleSheet.create({
 });
 
 export default OrphanagesMap;
+
